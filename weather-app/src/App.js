@@ -15,7 +15,7 @@ function Search() {
 function App() {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [currentData, setCurrentData] = useState({name: null, main: {temp:null, feels_like:null, humidity:null}});
+  const [currentData, setCurrentData] = useState({name: null, main: {temp:null, feels_like:null, humidity:null}, wind: {speed:null}, weather:[{icon: null}]}); //default value in case api call fails
   
   useEffect(() => {
     // get coords from navigator, if it fails the lat and long are set to that of london
@@ -41,14 +41,11 @@ function App() {
             <l>{currentData.main.temp}°C &#40;feels like {currentData.main.feels_like}°C&#41;</l>
             <img src={`https://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`} alt="weather icon"/>
             <r className='Row'>
-              <l> % = {currentData.main.humidity}</l>
+              <l> hum. = {currentData.main.humidity}%</l>
               <l> wind = {currentData.wind.speed} m/s</l>
             </r>
           </c>
         </p1>
-        <p2 className='Panel'>
-          Second Panel
-        </p2>
       </header>
       <footer className='App-footer'>
         <a href="https://github.com/BouchemZ">My github</a>
